@@ -1,19 +1,22 @@
+// Day 1, part 1: https://adventofcode.com/2023/day/1
 use std::fs::File;
 use std::collections::HashMap;
 use std::io::{ self, BufRead };
 
 fn main() -> io::Result<()> {
-  let mut sum: u32 = 0;
-  let file_path = "input.txt";
-  let file = File::open(file_path)?;
-  let reader = io::BufReader::new(file);
+  let mut sum: u32 = 0;                   // To keep track of the sum
+  let file_path = "input.txt";            // Given input file
+  let file = File::open(file_path)?;      // Open the file
+  let reader = io::BufReader::new(file);  // Buffer reader (apparently it reads line by line)
   
+  // Read the file, line-by-line
   for line in reader.lines() {
     let line = line?;
-    let mut map = HashMap::new();
+    let mut map = HashMap::new();         // A hashmap to keep track of the first and last digits of the line
     map.insert("first", 0);
     map.insert("last", 0);
 
+    // Fancy voodoo magic shiz
     for c in line.chars() {
       let num: u32 = c as u32 - 48;
 
