@@ -11,16 +11,16 @@ fn main() -> io::Result<()> {
   let reader = io::BufReader::new(file);
   let number_starts: HashSet<char> = vec!['z', 'o', 't', 'f', 's', 'e', 'n'].into_iter().collect();
   let number_map = HashMap::from([
-    ("ze", 0),
-    ("on", 1),
-    ("tw", 2),
-    ("th", 3),
-    ("fo", 4),
-    ("fi", 5),
-    ("si", 6),
-    ("se", 7),
-    ("ei", 8),
-    ("ni", 9)
+    ("zer", 0),
+    ("one", 1),
+    ("two", 2),
+    ("thr", 3),
+    ("fou", 4),
+    ("fiv", 5),
+    ("six", 6),
+    ("sev", 7),
+    ("eig", 8),
+    ("nin", 9)
   ]);
   
   // Read the file, line-by-line
@@ -41,16 +41,26 @@ fn main() -> io::Result<()> {
             map.insert("first", num);
           }
         }
+
         map.insert("last", num);
       } else {
-        if number_starts.contains(&c) && i != (line.chars().count() - 1) {
-          let mut first_2_chars = String::from(c);
-          first_2_chars.push(line.chars().nth(i + 1).unwrap());
-          println!("{}", first_2_chars);
+        if number_starts.contains(&c) && i < (line.chars().count() - 2) {
+          let mut first_3_chars = String::from(c);
+          first_3_chars.push(line.chars().nth(i + 1).unwrap());
+          first_3_chars.push(line.chars().nth(i + 2).unwrap());
+          
+          if let Some(&value) = number_map.get(first_3_chars.as_str()) {
+            if let Some(&val) = map.get("first") {
+              if val == 0 {
+                map.insert("first", value);
+              }
+            }
+
+            map.insert("last", value);
+          }
         }
       }
     }
-    println!();
 
     let mut first_num: u32 = 0;
     let mut last_num: u32 = 0;
