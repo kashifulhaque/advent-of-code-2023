@@ -1,9 +1,9 @@
 # ❄ **[Advent of Code, 2023](https://adventofcode.com/2023)** ⛄
 
 ### 🏔 **Question status**
-- [ ] Day 1
+- [x] Day 1
   - [x] Part 1
-  - [ ] Part 2
+  - [x] Part 2
 
 - [ ] Day 2
   - [ ] Part 1
