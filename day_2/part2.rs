@@ -23,7 +23,6 @@ fn main() -> io::Result<()> {
     if let Some(last_token) = tokens.last() {
       let last_tokens = last_token.trim().split("; ");
 
-      // Iterate over tokens of a line (after the ':' part)
       for token in last_tokens {
         let cube_tokens = token.trim().split(", ");
 
